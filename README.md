@@ -1,2 +1,2 @@
-# Seven-Stories
+# Seven Stories
 Text-adventure game
