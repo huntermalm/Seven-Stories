@@ -42,6 +42,9 @@ def get_saves_dir():
     else:
         saves_dir = os.getcwd() + "\\saves\\"
 
+    if not os.path.exists(saves_dir):
+        os.makedirs(saves_dir)
+
     return saves_dir
 
 
