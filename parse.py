@@ -27,12 +27,10 @@ def remove_punctuation(command):
     punctuation = [".", ",", "!", "'", '"', "?"]
 
     cmd_characters = list(command)
+    new_cmd_characters = [cmd_character
+                          for cmd_character in cmd_characters
+                          if cmd_character not in punctuation]
 
-    for count, character in enumerate(cmd_characters):
-        for punc in punctuation:
-            if character == punc:
-                cmd_characters.pop(count)
-
-    new_command = "".join(cmd_characters)
+    new_command = "".join(new_cmd_characters)
 
     return new_command
