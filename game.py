@@ -35,7 +35,7 @@ def execute(game_map, load):
 
 def get_saves_dir():
     if os.name == "posix":
-        if os.getcwd() == "/":
+        if os.getcwd() == "/":  # Handles QPython3 is game directory is in scripts3
             os.chdir("/storage/emulated/0/qpython/scripts3/Game")
         saves_dir = os.getcwd() + "/saves/"
 
@@ -61,7 +61,7 @@ def load_game(character_name, echo=True):
         game_map = pickle.load(f)
 
         if echo:
-            print("Loaded {}.".format(game_map.player.name))
+            print("Loaded {}.".format(character_name))
 
         return game_map
 
@@ -138,7 +138,7 @@ def load_options():
 
             elif parts[0] == "load":
                 if len(parts) == 2:
-                    return load_game(character_names[parts[1]].lower())
+                    return load_game(character_names[parts[1]])
                 else:
                     print("Load what?")
 

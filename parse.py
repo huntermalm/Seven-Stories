@@ -4,7 +4,6 @@ import lists
 
 
 def parse_command(command):
-    load = []
     raw_parts = remove_punctuation(command).split()
 
     action_objects = [wordtypes.Action(word, index)
@@ -15,10 +14,8 @@ def parse_command(command):
                          for index, word in enumerate(raw_parts)
                          if word in lists.adjectives]
 
-    for action_object in action_objects:
-        for str_action, function in get_action_dictionary().items():
-            if action_object.word == str_action:
-                load.append((function, action_object))
+    load = [(get_action_dictionary()[action_object.word], action_object)
+            for action_object in action_objects]
 
     return load
 
