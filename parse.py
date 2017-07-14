@@ -6,16 +6,26 @@ import lists
 def parse_command(command):
     raw_parts = remove_punctuation(command).split()
 
-    action_objects = [wordtypes.Action(word, index)
-                      for index, word in enumerate(raw_parts)
-                      if word in lists.actions]
+    action_objs = [wordtypes.Action(word, index)
+                   for index, word in enumerate(raw_parts)
+                   if word in lists.actions]
 
-    adjective_objects = [wordtypes.Adjective(word, index)
-                         for index, word in enumerate(raw_parts)
-                         if word in lists.adjectives]
+    adjective_objs = [wordtypes.Adjective(word, index)
+                      for index, word in enumerate(raw_parts)
+                      if word in lists.adjectives]
+
+    object_objs = [wordtypes.Object(word, index, "item")
+                   for index, word in enumerate(raw_parts)
+                   if word in lists.items]
+    object_objs.extend([wordtypes.Object(word, index, "location")
+                        for index, word in enumerate(raw_parts)
+                        if word in lists.locations])
+    object_objs.extend([wordtypes.Object(word, index, "container")
+                        for index, word in enumerate(raw_parts)
+                        if word in lists.containers])
 
     load = [(get_action_dictionary()[action_object.word], action_object)
-            for action_object in action_objects]
+            for action_object in action_objs]
 
     return load
 

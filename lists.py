@@ -4,5 +4,17 @@ actions = [
     ]
 
 adjectives = [
-    ""
+    "red", "green", "blue"
+    ]
+
+items = [
+    "phone", "laptop"
+    ]
+
+locations = [
+    "lobby", "hall"
+    ]
+
+containers = [
+    "chest", "backpack", "table", "desk", "bag"
     ]

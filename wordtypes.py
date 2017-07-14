@@ -17,6 +17,13 @@ class Adjective(Word):
         super().__init__(word, index)
 
 
+class Object(Word):
+
+    def __init__(self, word, index, object_type):
+        super().__init__(word, index)
+        self.type = object_type
+
+
 class Preposition(Word):
 
     def __init__(self, word, index):
