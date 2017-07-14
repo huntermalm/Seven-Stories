@@ -13,9 +13,11 @@ def save(game_map, action_object):
 
 def quit(game_map, action_object):
     if not game_map.just_saved:
-        response = input("Would you like to save before quitting (y\\n)? ").lower()
+        from game import get_simple_answer
+        question = "Would you like to save before quitting (y\\n)? "
+        do_save = get_simple_answer(question)
         print("--------------------------------------------")
-        if response[0] == 'y':
+        if do_save:
             save(game_map, action_object)
             print("--------------------------------------------")
 

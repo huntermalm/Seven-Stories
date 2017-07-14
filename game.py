@@ -48,6 +48,21 @@ def get_saves_dir():
     return saves_dir
 
 
+def get_simple_answer(question):
+    simple_answers_dict = {
+        "yes": True, 'y': True, "yeah": True, "yea": True,
+        "no": False, 'n': False, "nope": False
+        }
+    while True:
+        input_answer = input(question)
+        if input_answer in simple_answers_dict:
+            return simple_answers_dict[input_answer]
+        else:
+            print("          ----------------------")
+            print("Must choose yes or no.")
+            print("          ----------------------")
+
+
 def save_game(game_map, echo=True):
     with open(get_saves_dir() + game_map.player.name.lower() + ".dat", "wb") as f:
         pickle.dump(game_map, f, protocol=3)
