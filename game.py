@@ -72,7 +72,7 @@ def save_game(game_map, echo=True):
 
 
 def load_game(character_name, echo=True):
-    with open(get_saves_dir() + character_name + ".dat", "rb") as f:
+    with open(get_saves_dir() + character_name.lower() + ".dat", "rb") as f:
         game_map = pickle.load(f)
 
         if echo:
