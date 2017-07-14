@@ -75,9 +75,7 @@ def reset_character(character_name):
 
 
 def create_character():
-    name_set = False
-
-    while not name_set:
+    while True:
         name_exists = False
         name = input("Enter a name: ")
 
@@ -135,25 +133,21 @@ def load_options():
 
             if parts[0] == "new":
                 return create_character()
-
-            elif parts[0] == "load":
-                if len(parts) == 2:
-                    return load_game(character_names[parts[1]])
-                else:
-                    print("Load what?")
-
-            elif parts[0] == "reset":
-                if len(parts) == 2:
-                    reset_character(character_names[parts[1]])
-                else:
-                    print("Reset what?")
-
-            elif parts[0] == "delete":
-                if len(parts) == 2:
-                    delete_character(character_names[parts[1]])
-                    break
-                else:
-                    print("Delete what?")
-
             else:
-                print("Invalid command!")
+                try:
+                    if parts[0] == "load":
+                        return load_game(character_names[parts[1]])
+                    elif parts[0] == "reset":
+                        reset_character(character_names[parts[1]])
+                    elif parts[0] == "delete":
+                        delete_character(character_names[parts[1]])
+                        break
+                    else:
+                        print("Invalid command!")
+                except IndexError:
+                    print("{} what?".format(parts[0].capitalize()))
+                except KeyError:
+                    if parts[1].isdigit():
+                        print("There is no character labeled '{}'.".format(parts[1]))
+                    else:
+                        print("You must enter the character number.")
