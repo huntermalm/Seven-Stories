@@ -71,6 +71,6 @@ def get_full_objects(adjective_objs, object_objs):
             full_objects.append(wordtypes.FullObject(word_obj.word, word_obj))
             adjectives = []
 
-    [print("{} at {}".format(full_object.word, full_object.index)) for full_object in full_objects]
+    # [print("{} at {}".format(full_object.word, full_object.index)) for full_object in full_objects]
 
     return full_objects
