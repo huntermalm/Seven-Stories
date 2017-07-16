@@ -24,6 +24,13 @@ class Object(Word):
         self.type = object_type
 
 
+class FullObject(Word):
+
+    def __init__(self, full_word, obj):
+        super().__init__(full_word, obj.index)
+        self.type = obj.type
+
+
 class Preposition(Word):
 
     def __init__(self, word, index):
