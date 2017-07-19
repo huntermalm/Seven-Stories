@@ -1,3 +1,5 @@
+"""Provide functionality to parse user input
+
 Contains functions designed to parse user's input specifically for the game.
 This game supports multiple commands at a time.  To prevent any confusion,
 a convention must be set.  For this game, any word that the user can enter
@@ -20,6 +22,7 @@ def parse_command(command):
     """Parse a user's command and return a load
 
     The load is a list of tuples each containing a function and action object.
+    The goal of this function is to build all of the necessary pieces required
     to construct a load.
 
     This starts with removing any punctuation from the user's command, and then
@@ -27,6 +30,8 @@ def parse_command(command):
 
     By using list comprehension, the words in the raw parts list is iterated
     over and checked to see if it appears in a particular list.  If the word
+    does appear in a list, a word object specific to that type of word is
+    created and then stored into a list of those specific types of objects.  For
     example, if the user's command contained the word "blue", it would appear
     inside the raw parts list.  When iterating over that list, this function
     will recognize it as an adjective, and create an adjective word object,
