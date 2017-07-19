@@ -146,23 +146,26 @@ def load_options():
             print("--------------------------------------------")
             parts = command.split()
 
-            if parts[0] == "new":
-                return create_character()
+            if parts:
+                if parts[0] == "new":
+                    return create_character()
+                else:
+                    try:
+                        if parts[0] == "load":
+                            return load_game(character_names[parts[1]])
+                        elif parts[0] == "reset":
+                            reset_character(character_names[parts[1]])
+                        elif parts[0] == "delete":
+                            delete_character(character_names[parts[1]])
+                            break
+                        else:
+                            print("Invalid command!")
+                    except IndexError:
+                        print("{} what?".format(parts[0].capitalize()))
+                    except KeyError:
+                        if parts[1].isdigit():
+                            print("There is no character labeled '{}'.".format(parts[1]))
+                        else:
+                            print("You must enter the character number.")
             else:
-                try:
-                    if parts[0] == "load":
-                        return load_game(character_names[parts[1]])
-                    elif parts[0] == "reset":
-                        reset_character(character_names[parts[1]])
-                    elif parts[0] == "delete":
-                        delete_character(character_names[parts[1]])
-                        break
-                    else:
-                        print("Invalid command!")
-                except IndexError:
-                    print("{} what?".format(parts[0].capitalize()))
-                except KeyError:
-                    if parts[1].isdigit():
-                        print("There is no character labeled '{}'.".format(parts[1]))
-                    else:
-                        print("You must enter the character number.")
+                print("Invalid command!")
