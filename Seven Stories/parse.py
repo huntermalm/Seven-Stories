@@ -72,7 +72,7 @@ def parse_command(command):
                         for index, word in enumerate(raw_parts)
                         if word in lists.containers])
 
-    get_full_objects(adjective_objs, object_objs)
+    construct_object_fullnames(adjective_objs, object_objs)
 
     load = [(get_action_dictionary()[action_object.word], action_object)
             for action_object in action_objs]
@@ -100,7 +100,7 @@ def remove_punctuation(command):
     return new_command
 
 
-def get_full_objects(adjective_objs, object_objs):
+def construct_object_fullnames(adjective_objs, object_objs):
     combined_list = []
     combined_list.extend(adjective_objs)
     combined_list.extend(object_objs)
@@ -109,23 +109,20 @@ def get_full_objects(adjective_objs, object_objs):
     adj_indexes = [adj_obj.index for adj_obj in adjective_objs]
 
     adjectives = []
-    full_objects = []
 
     for word_obj in combined_list:
         if word_obj.index in adj_indexes:
             adjectives.append(word_obj)
         elif adjectives:
             if adjectives[len(adjectives) - 1].index == word_obj.index - 1:
-                full_object_name = "".join([adj.word + " " for adj in adjectives]) + word_obj.word
-                full_objects.append(wordtypes.FullObject(full_object_name, word_obj))
+                object_fullname = "".join([adj.word + " " for adj in adjectives]) + word_obj.word
+                word_obj.fullname = object_fullname
                 adjectives = []
             else:
-                full_objects.append(wordtypes.FullObject(word_obj.word, word_obj))
+                word_obj.fullname = word_obj.word
                 adjectives = []
         else:
-            full_objects.append(wordtypes.FullObject(word_obj.word, word_obj))
+            word_obj.fullname = word_obj.word
             adjectives = []
 
-    # [print("{} at {}".format(full_object.word, full_object.index)) for full_object in full_objects]
-
-    return full_objects
+    [print("{} at {}".format(object_obj.fullname, object_obj.index)) for object_obj in object_objs]
