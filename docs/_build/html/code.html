@@ -1,0 +1,716 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Auto Generated Documentation &#8212; Seven Stories 1.0.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="Welcome to Seven Stories’s documentation!" href="index.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head>
+  <body role="document">
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="auto-generated-documentation">
+<h1>Auto Generated Documentation<a class="headerlink" href="#auto-generated-documentation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-main">
+<span id="main-py"></span><h2>main.py<a class="headerlink" href="#module-main" title="Permalink to this headline">¶</a></h2>
+<p>Main module to execute the game</p>
+<p>Running this module will execute the game loop.  This module is intended to be
+a very simple starting point for the game.  If this module is running on the
+interpreter as the main program, then the main() function will execute.</p>
+<dl class="function">
+<dt id="main.main">
+<code class="descclassname">main.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the only function in this module.  It first loads the game_map,
+and then calls the game.play_game() function with the loaded game_map.
+Notice how game.play_game() is being stored as arg.  It does not always
+return an arg.  This arg allows a user&#8217;s action to affect higher levels of
+the game.  Only very special cases should make use of this, such as
+quitting is used here.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-game">
+<span id="game-py"></span><h2>game.py<a class="headerlink" href="#module-game" title="Permalink to this headline">¶</a></h2>
+<p>Provide basic game functionality</p>
+<p>The functions in this module provide the foundation for the game to operate
+as it does.  These functions are considered the game&#8217;s core, and therefore
+live within the game.py module.</p>
+<dl class="function">
+<dt id="game.create_character">
+<code class="descclassname">game.</code><code class="descname">create_character</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#game.create_character" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates and returns new game_map after asking for a name</p>
+<p>Asks the user to enter a name.  If the name does not already exist, a new
+game_map will be created using the name and returned.  Loops until a
+non-existing name is entered.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">New GameMap object based on name</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">class GameMap</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.delete_character">
+<code class="descclassname">game.</code><code class="descname">delete_character</code><span class="sig-paren">(</span><em>character_name</em>, <em>echo=True</em><span class="sig-paren">)</span><a class="headerlink" href="#game.delete_character" title="Permalink to this definition">¶</a></dt>
+<dd><p>Delete a character</p>
+<p>os.remove() function on a file formatted &#8220;&lt;character name&gt;.dat&#8221;.</p>
+<p>Echos by default.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>character_name</strong> (<em>str</em>) &#8211; Name of character to delete</li>
+<li><strong>echo=True</strong> (<em>boolean</em>) &#8211; Echos to console if True</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.execute">
+<code class="descclassname">game.</code><code class="descname">execute</code><span class="sig-paren">(</span><em>game_map</em>, <em>load</em><span class="sig-paren">)</span><a class="headerlink" href="#game.execute" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute all of the actions parsed from the user&#8217;s command</p>
+<p>This function iterates over the load list, unpacking each function and
+action object, and then calls the function passing it the game_map and
+the action object.  Using this method means that every action function
+(in actions.py) must take these two parameters.  By sending the game_map,
+you&#8217;re giving the action function access to everything the game_map
+contains.  The purpose of passing along the action object is because it
+will be designed to store action specific details, such as direct objects
+or even objects of prepositions.</p>
+<p>This is also where an arg can be passed up.  If an action function returns
+a string, it will be declared as &#8220;arg&#8221;.  A set of &#8220;if-else&#8221; statements
+appears directly below this declaration, and also after every parent
+function called all the way back to the main() function.  For now, this is
+only being used to properly quit the game, however, it may be used if
+user actions ever need to affect higher levels of the game.</p>
+<p>If the user&#8217;s action is &#8220;save&#8221;, then the game_map.just_saved value will
+be set to True, otherwise False.  This check occurs per action.  This
+allows the &#8220;quit&#8221; action function to check if the user just saved, and if
+not, it will ask the user if they would like to save before quitting.</p>
+<p>If the user&#8217;s command does not contain any actions, load will be empty.
+If the load does not contain anything, &#8220;Invalid command!&#8221; is returned
+back to the user.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>game_map</strong> (<em>class GameMap</em>) &#8211; GameMap object to execute on</li>
+<li><strong>load</strong> (<em>list</em>) &#8211; List of tuples formatted as (function, action_object)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">may return arg to be used at higher level</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">str or None</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.get_saves_dir">
+<code class="descclassname">game.</code><code class="descname">get_saves_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#game.get_saves_dir" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return the saves directory</p>
+<p>Checks the os.name to handle differences between how operating systems
+handle slashes in directory paths.</p>
+<p>Also checks if the program is running from root.  Until a proper
+cross-platform system is implemented, the user may run the program in
+QPython3.  The &#8220;Seven Stories&#8221; directory must be placed inside
+&#8220;/storage/emulated/0/qpython/scripts3/&#8221;.  If you decide to place it
+somewhere else, you must change the os.chdir() function call below.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Saves directory</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.get_simple_answer">
+<code class="descclassname">game.</code><code class="descname">get_simple_answer</code><span class="sig-paren">(</span><em>question</em><span class="sig-paren">)</span><a class="headerlink" href="#game.get_simple_answer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return True or False based on a yes/no response to a question</p>
+<p>Contains a dictionary that maps the yes/no strings to True/False values.
+If the user&#8217;s response appears in the dictionary, it is used as the key
+to retrieve the True/False value, which is then returned.  If the user&#8217;s
+response does not appear in the dictionary, it tells the user that they
+must choose yes or no, and then loops back to obtain a repsonse again.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>question</strong> (<em>str</em>) &#8211; Question that can be answered with yes or no.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True or False depending on yes/no response</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.load_game">
+<code class="descclassname">game.</code><code class="descname">load_game</code><span class="sig-paren">(</span><em>character_name</em>, <em>echo=True</em><span class="sig-paren">)</span><a class="headerlink" href="#game.load_game" title="Permalink to this definition">¶</a></dt>
+<dd><p>Loads and returns a game_map from a file in the saves directory</p>
+<p>This function returns a game_map object from a file formatted
+&#8220;&lt;character name&gt;.dat&#8221;.  The file is loaded via the pickle module.</p>
+<p>Echos by default.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>character_name</strong> (<em>str</em>) &#8211; Name of the character to load</li>
+<li><strong>echo=True</strong> (<em>boolean</em>) &#8211; Echos to console if True</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Loaded game_map</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">class GameMap</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.load_options">
+<code class="descclassname">game.</code><code class="descname">load_options</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#game.load_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Provides an interface for loading, resetting, or deleting characters</p>
+<p>Gets a dictionary of characters based on the saves in the saves directory,
+displays them to the user, and displays a set of commands that can be
+entered by the user.  Loops until the user enters a valid command.</p>
+<p>The only argument the user will need to enter is the character number
+displayed alongside the character name of the charcter they would like to
+perform the command on.  This number is stored as a key in the
+character_names dictionary</p>
+<p>If the command requires an argument, and one is not entered, an IndexError
+exception is raised and caught.  A message is printed to the console
+formatted as &#8220;&lt;command&gt; what?&#8221;, implying that is does not know which
+character to perform the command on.</p>
+<p>Function only ends once it returns a game_map.  This happens two ways.
+If the user enters &#8220;load &lt;displayed character number&gt;&#8221;, then it will load
+and return the game_map from that character file.  Also, if there if no
+save in the saves directory, then create_character() is returned, which
+itself returns a game_map.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">GameMap object if loaded or no character exists</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">class GameMap</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.play_game">
+<code class="descclassname">game.</code><code class="descname">play_game</code><span class="sig-paren">(</span><em>game_map</em><span class="sig-paren">)</span><a class="headerlink" href="#game.play_game" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enters the main game loop</p>
+<p>The game loop is considered occuring while a command is in progress.  This
+is because every time the game loops, the user needs to enter a new
+command.</p>
+<p>The user&#8217;s command is handled inside the parse.parse_command() function,
+which takes the user&#8217;s input as an argument.  This function returns the
+load, which is a list of tuples.  Each tuple is created per action that
+appears inside the user&#8217;s command, and each tuple stores two things
+regarding that action: a function that pertains to that particular action,
+and the action object (see wordtypes.py).</p>
+<p>The load obtained by the parse.parse_command() function is then passed
+to the execute() function.  This function contains code specifically
+designed to iterate over the load, unpack the tuples, and perform
+per-action operations.</p>
+<p>In the event that a user types an action designed to interact with higher
+levels of the game (i.e. quitting), that action function will return an
+arbitrary string.  This string is then return by the execute() function and
+stored as &#8220;arg&#8221;.  The execute() function does not have to return anything.
+This arg can be continually passed up all the way to the main() function
+to let the user perform higher level actions, such as quitting the game.</p>
+<p>Once the execute() function completes, and there is no argument returned,
+the loop starts over again and asks the user to enter another command.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>game_map</strong> (<em>class GameMap</em>) &#8211; The currently loaded GameMap object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">may return arg to be used at higher level</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str or None</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.reset_character">
+<code class="descclassname">game.</code><code class="descname">reset_character</code><span class="sig-paren">(</span><em>character_name</em>, <em>echo=True</em><span class="sig-paren">)</span><a class="headerlink" href="#game.reset_character" title="Permalink to this definition">¶</a></dt>
+<dd><p>Resets a character to a fresh game_map</p>
+<p>First deletes the character.  Then creates a new game_map with the same
+character name.  Finally, the game_map is saved.</p>
+<p>Echos by default.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>character_name</strong> (<em>str</em>) &#8211; Name of character to reset</li>
+<li><strong>echo=True</strong> (<em>boolean</em>) &#8211; Echos to console if True</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.save_game">
+<code class="descclassname">game.</code><code class="descname">save_game</code><span class="sig-paren">(</span><em>game_map</em>, <em>echo=True</em><span class="sig-paren">)</span><a class="headerlink" href="#game.save_game" title="Permalink to this definition">¶</a></dt>
+<dd><p>Saves the game_map to a file in the saves directory</p>
+<p>This game makes use of the pickle module for object serialization.  The
+game_map is dumped to a file as &#8220;&lt;lowercase player name&gt;.dat&#8221;.  If it
+already exists, it will be overwritten; if not, it will be created.</p>
+<p>Echos by default.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>game_map</strong> (<em>class GameMap</em>) &#8211; GameMap object to save</li>
+<li><strong>echo=True</strong> (<em>boolean</em>) &#8211; Echos to console if True</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-parse">
+<span id="parse-py"></span><h2>parse.py<a class="headerlink" href="#module-parse" title="Permalink to this headline">¶</a></h2>
+<p>Provide functionality to parse user input</p>
+<p>Contains functions designed to parse user&#8217;s input specifically for the game.
+This game supports multiple commands at a time.  To prevent any confusion,
+a convention must be set.  For this game, any word that the user can enter
+that causes something to happen is called an action.  A user&#8217;s command may
+contain an unlimited amount of actions.</p>
+<p>To ensure control over the user&#8217;s capabilities, a set of lists from lists.py
+are imported.  These lists contain the words that are recognized during
+parsing.  The parse_command() function will only create word objects with the
+words that appear in both the user&#8217;s command and any of the lists.</p>
+<dl class="function">
+<dt id="parse.parse_command">
+<code class="descclassname">parse.</code><code class="descname">parse_command</code><span class="sig-paren">(</span><em>command</em><span class="sig-paren">)</span><a class="headerlink" href="#parse.parse_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Parse a user&#8217;s command and return a load</p>
+<p>The load is a list of tuples each containing a function and action object.
+The goal of this function is to build all of the necessary pieces required
+to construct a load.</p>
+<p>This starts with removing any punctuation from the user&#8217;s command, and then
+splitting the words up into a list of raw parts.</p>
+<p>By using list comprehension, the words in the raw parts list is iterated
+over and checked to see if it appears in a particular list.  If the word
+does appear in a list, a word object specific to that type of word is
+created and then stored into a list of those specific types of objects.  For
+example, if the user&#8217;s command contained the word &#8220;blue&#8221;, it would appear
+inside the raw parts list.  When iterating over that list, this function
+will recognize it as an adjective, and create an adjective word object,
+storing the word itself and the index of that word.  This adjective word
+object would then be stored in a list of adjective word objects.  A list of
+word objects is created for every type of word.</p>
+<p>The load is constructed by iterating over the action word objects in the
+action objects list.  For every action object in the list, a new tuple is
+created storing two values.  The first value is a function obtained
+by passing the word within the action object to a dictionary obtained
+through the get_action_dictionary() function in actions.py.  The second
+value is the action object itself, useful for storing the direct objects
+and objects of prepositions.  Once fully constructed, the load is returned.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>command</strong> (<em>str</em>) &#8211; Command to parse</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">List of tuples formatted as (function, action_object)</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">List</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="parse.remove_punctuation">
+<code class="descclassname">parse.</code><code class="descname">remove_punctuation</code><span class="sig-paren">(</span><em>command</em><span class="sig-paren">)</span><a class="headerlink" href="#parse.remove_punctuation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes in a command and returns it with removed punctuation</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>command</strong> (<em>str</em>) &#8211; Command to remove punctuation from</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Command without punctuation</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-wordtypes">
+<span id="wordtypes-py"></span><h2>wordtypes.py<a class="headerlink" href="#module-wordtypes" title="Permalink to this headline">¶</a></h2>
+<p>Stores all of the different word classes</p>
+<p>The base Word class is inherited by all of the other classes.  It contains
+the logic to store the string of the word in particular, as well of the index
+of where that word appeared in the user&#8217;s command.</p>
+<p>Any instance of any of these classes can be referred to as a word object,
+however, an action word object can be simplified as just an action object.</p>
+<dl class="class">
+<dt id="wordtypes.Action">
+<em class="property">class </em><code class="descclassname">wordtypes.</code><code class="descname">Action</code><span class="sig-paren">(</span><em>word</em>, <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#wordtypes.Action" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to define the attributes and behaviors of an action object</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="wordtypes.Adjective">
+<em class="property">class </em><code class="descclassname">wordtypes.</code><code class="descname">Adjective</code><span class="sig-paren">(</span><em>word</em>, <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#wordtypes.Adjective" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to define the attributes and behaviors of an adjective object</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="wordtypes.Preposition">
+<em class="property">class </em><code class="descclassname">wordtypes.</code><code class="descname">Preposition</code><span class="sig-paren">(</span><em>word</em>, <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#wordtypes.Preposition" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to define the attributes and behaviors of a preposition object</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="wordtypes.Pronoun">
+<em class="property">class </em><code class="descclassname">wordtypes.</code><code class="descname">Pronoun</code><span class="sig-paren">(</span><em>word</em>, <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#wordtypes.Pronoun" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to define the attributes and behaviors of a pronoun object</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="wordtypes.Word">
+<em class="property">class </em><code class="descclassname">wordtypes.</code><code class="descname">Word</code><span class="sig-paren">(</span><em>word</em>, <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#wordtypes.Word" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to define the attributes and behaviors of a generic word object</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="10%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Instance Attributes</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>word</td>
+<td>str</td>
+<td>Recognized word</td>
+</tr>
+<tr class="row-odd"><td>index</td>
+<td>int</td>
+<td>Index of word in user&#8217;s command</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-actions">
+<span id="actions-py"></span><h2>actions.py<a class="headerlink" href="#module-actions" title="Permalink to this headline">¶</a></h2>
+<p>Stores action functions that affect the game map</p>
+<p>This modules contains all of the action functions.  An action function is the
+function associated with an action in the user&#8217;s command.  This system uses
+a dictionary, aquired by the get_action_dictionary() function in this module,
+to map the string of any particular action to its corresponding function,
+without calling it.  This allows all of the action functions to be stored
+before they are all executed.</p>
+<p>The function, however, is not just stored directly in the list because the
+action object also needs to be stored alongside the function (as it will
+contain information like direct objects and objects of prepositions).  Because
+of this, the function and action object are first stored inside a tuple, and
+then the tuple is stored inside the list.  This particular list is referred to
+as the load.</p>
+<p>Every action function in this module takes the same arguments: the game map,
+and the action object.  This allows iterating over the load, unpacking the
+tuples as &#8220;function, action_object&#8221;, and calling them as
+&#8220;function(game_map, action_object)&#8221;.</p>
+<dl class="function">
+<dt id="actions.get_action_dictionary">
+<code class="descclassname">actions.</code><code class="descname">get_action_dictionary</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#actions.get_action_dictionary" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns action dictionary with action string mapped to action function</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">Action dictionary (action string: action function)</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">dict</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="actions.health">
+<code class="descclassname">actions.</code><code class="descname">health</code><span class="sig-paren">(</span><em>game_map</em>, <em>action_object</em><span class="sig-paren">)</span><a class="headerlink" href="#actions.health" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display the player&#8217;s health</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="actions.name">
+<code class="descclassname">actions.</code><code class="descname">name</code><span class="sig-paren">(</span><em>game_map</em>, <em>action_object</em><span class="sig-paren">)</span><a class="headerlink" href="#actions.name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display the player&#8217;s name</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="actions.quit">
+<code class="descclassname">actions.</code><code class="descname">quit</code><span class="sig-paren">(</span><em>game_map</em>, <em>action_object</em><span class="sig-paren">)</span><a class="headerlink" href="#actions.quit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Quit the game</p>
+<p>If the previous action was not &#8220;save&#8221;, then this function will ask the
+player if they would like to save before quitting.  This is handled with
+an attribute called &#8220;just_saved&#8221; in the class GameMap that is set every
+time an action function is called.  Only if the action function is &#8220;save&#8221;
+will the attribute be set to True.</p>
+<p>To quit, this function returns a string &#8220;quit&#8221; to be a recognized argument
+all the way back to the main.main() function, which is finally returned to
+properly quit the game.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">&#8220;quit&#8221; intended to be a recognized argument at higher levels</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Return type:</th><td class="field-body">str</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="actions.save">
+<code class="descclassname">actions.</code><code class="descname">save</code><span class="sig-paren">(</span><em>game_map</em>, <em>action_object</em><span class="sig-paren">)</span><a class="headerlink" href="#actions.save" title="Permalink to this definition">¶</a></dt>
+<dd><p>Save the game</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-gamemap">
+<span id="gamemap-py"></span><h2>gamemap.py<a class="headerlink" href="#module-gamemap" title="Permalink to this headline">¶</a></h2>
+<p>Module to isolate the class GameMap</p>
+<dl class="class">
+<dt id="gamemap.GameMap">
+<em class="property">class </em><code class="descclassname">gamemap.</code><code class="descname">GameMap</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#gamemap.GameMap" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to define the attributes and behaviors of a gamemap</p>
+<p>The GameMap stores the Player instance.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="29%" />
+<col width="14%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Instance Attributes</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>just_saved</td>
+<td>boolean</td>
+<td>True/False is previous action was &#8220;save&#8221;</td>
+</tr>
+<tr class="row-odd"><td>player</td>
+<td>Player</td>
+<td>Instance of the Player</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; Name to assign to the Player instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-player">
+<span id="player-py"></span><h2>player.py<a class="headerlink" href="#module-player" title="Permalink to this headline">¶</a></h2>
+<p>Module to isolate the class Player</p>
+<dl class="class">
+<dt id="player.Player">
+<em class="property">class </em><code class="descclassname">player.</code><code class="descname">Player</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#player.Player" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to define the attributes and behaviors of a player</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="42%" />
+<col width="12%" />
+<col width="46%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Instance Attributes</th>
+<th class="head">Type</th>
+<th class="head">Description</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>name</td>
+<td>str</td>
+<td>Name set by parameter</td>
+</tr>
+<tr class="row-odd"><td>health</td>
+<td>int</td>
+<td>Health (default=100)</td>
+</tr>
+</tbody>
+</table>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; Name to assign to Player instance</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-lists">
+<span id="lists-py"></span><h2>lists.py<a class="headerlink" href="#module-lists" title="Permalink to this headline">¶</a></h2>
+<p>Lists of words to be recognized while parsing the user&#8217;s command</p>
+<dl class="docutils">
+<dt>Contains the following lists:</dt>
+<dd><ul class="first last simple">
+<li>actions</li>
+<li>adjectives</li>
+</ul>
+</dd>
+</dl>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Auto Generated Documentation</a><ul>
+<li><a class="reference internal" href="#module-main">main.py</a></li>
+<li><a class="reference internal" href="#module-game">game.py</a></li>
+<li><a class="reference internal" href="#module-parse">parse.py</a></li>
+<li><a class="reference internal" href="#module-wordtypes">wordtypes.py</a></li>
+<li><a class="reference internal" href="#module-actions">actions.py</a></li>
+<li><a class="reference internal" href="#module-gamemap">gamemap.py</a></li>
+<li><a class="reference internal" href="#module-player">player.py</a></li>
+<li><a class="reference internal" href="#module-lists">lists.py</a></li>
+</ul>
+</li>
+</ul>
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="index.html" title="previous chapter">Welcome to Seven Stories&#8217;s documentation!</a></li>
+  </ul></li>
+</ul>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/code.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <div><input type="text" name="q" /></div>
+      <div><input type="submit" value="Go" /></div>
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2017, Hunter Malm.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.5.3</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.10</a>
+      
+      |
+      <a href="_sources/code.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
