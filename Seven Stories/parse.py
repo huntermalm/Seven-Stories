@@ -113,16 +113,16 @@ def construct_object_fullnames(adjective_objs, object_objs):
     for word_obj in combined_list:
         if word_obj.index in adj_indexes:
             adjectives.append(word_obj)
-        elif adjectives:
-            if adjectives[len(adjectives) - 1].index == word_obj.index - 1:
-                object_fullname = "".join([adj.word + " " for adj in adjectives]) + word_obj.word
-                word_obj.fullname = object_fullname
-                adjectives = []
-            else:
-                word_obj.fullname = word_obj.word
-                adjectives = []
         else:
-            word_obj.fullname = word_obj.word
+            if adjectives:
+                if adjectives[len(adjectives) - 1].index == word_obj.index - 1:
+                    object_fullname = "".join([adj.word + " " for adj in adjectives]) + word_obj.word
+                else:
+                    object_fullname = word_obj.word
+            else:
+                object_fullname = word_obj.word
+
+            word_obj.fullname = object_fullname
             adjectives = []
 
     [print("{} at {}".format(object_obj.fullname, object_obj.index)) for object_obj in object_objs]
