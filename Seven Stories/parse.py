@@ -108,21 +108,21 @@ def construct_object_fullnames(adjective_objs, object_objs):
 
     adj_indexes = [adj_obj.index for adj_obj in adjective_objs]
 
-    adjectives = []
+    temp_adjs = []
 
     for word_obj in combined_list:
         if word_obj.index in adj_indexes:
-            adjectives.append(word_obj)
+            temp_adjs.append(word_obj)
         else:
-            if adjectives:
-                if adjectives[len(adjectives) - 1].index == word_obj.index - 1:
-                    object_fullname = "".join([adj.word + " " for adj in adjectives]) + word_obj.word
+            if temp_adjs:
+                if temp_adjs[len(temp_adjs) - 1].index == word_obj.index - 1:
+                    object_fullname = "".join([adj.word + " " for adj in temp_adjs]) + word_obj.word
                 else:
                     object_fullname = word_obj.word
             else:
                 object_fullname = word_obj.word
 
             word_obj.fullname = object_fullname
-            adjectives = []
+            temp_adjs = []
 
     [print("{} at {}".format(object_obj.fullname, object_obj.index)) for object_obj in object_objs]
