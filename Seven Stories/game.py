@@ -127,11 +127,11 @@ def get_saves_dir():
     """
     if os.name == "posix":
         if os.getcwd() == "/":  # Handles QPython3 is game directory is in scripts3
-            os.chdir("/storage/emulated/0/qpython/scripts3/Seven Stories")
-        saves_dir = os.getcwd() + "/saves/"
+            os.chdir("/storage/emulated/0/qpython/scripts3/Seven Stories/Seven Stories")
+        saves_dir = os.path.abspath("../saves") + "/"
 
     else:
-        saves_dir = os.getcwd() + "\\saves\\"
+        saves_dir = os.path.abspath("..\\saves") + "\\"
 
     if not os.path.exists(saves_dir):
         os.makedirs(saves_dir)
