@@ -7,7 +7,7 @@ live within the game.py module.
 """
 import os
 import pickle
-import gamemap
+from SevenStories import gamemap
 
 
 def play_game(game_map):

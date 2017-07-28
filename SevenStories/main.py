@@ -5,7 +5,7 @@ a very simple starting point for the game.  If this module is running on the
 interpreter as the main program, then the main() function will execute.
 
 """
-import game
+from SevenStories import game
 
 
 def main():
