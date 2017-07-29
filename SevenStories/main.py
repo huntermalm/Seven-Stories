@@ -8,16 +8,17 @@ interpreter as the main program, then the main() function will execute.
 from SevenStories import game
 
 
-def main():
+def main(game_map=None):
     """
-    This is the only function in this module.  It first loads the game_map,
-    and then calls the game.play_game() function with the loaded game_map.
-    Notice how game.play_game() is being stored as arg.  It does not always
-    return an arg.  This arg allows a user's action to affect higher levels of
-    the game.  Only very special cases should make use of this, such as
-    quitting is used here.
+    This is the only function in this module.  It first loads the game_map if
+    one is not provided, and then calls the game.play_game() function with
+    the loaded game_map.  Notice how game.play_game() is being stored
+    as arg.  It does not always return an arg.  This arg allows a user's
+    action to affect higher levels of the game.  Only very special cases
+    should make use of this, such as quitting is used here.
     """
-    game_map = game.load_options()
+    if game_map is None:
+        game_map = game.load_options()
     print("--------------------------------------------")
     arg = game.play_game(game_map)
 

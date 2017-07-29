@@ -52,13 +52,13 @@ a very simple starting point for the game.  If this module is running on the
 interpreter as the main program, then the main() function will execute.</p>
 <dl class="function">
 <dt id="main.main">
-<code class="descclassname">main.</code><code class="descname">main</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#main.main" title="Permalink to this definition">¶</a></dt>
-<dd><p>This is the only function in this module.  It first loads the game_map,
-and then calls the game.play_game() function with the loaded game_map.
-Notice how game.play_game() is being stored as arg.  It does not always
-return an arg.  This arg allows a user&#8217;s action to affect higher levels of
-the game.  Only very special cases should make use of this, such as
-quitting is used here.</p>
+<code class="descclassname">main.</code><code class="descname">main</code><span class="sig-paren">(</span><em>game_map=None</em><span class="sig-paren">)</span><a class="headerlink" href="#main.main" title="Permalink to this definition">¶</a></dt>
+<dd><p>This is the only function in this module.  It first loads the game_map if
+one is not provided, and then calls the game.play_game() function with
+the loaded game_map.  Notice how game.play_game() is being stored
+as arg.  It does not always return an arg.  This arg allows a user&#8217;s
+action to affect higher levels of the game.  Only very special cases
+should make use of this, such as quitting is used here.</p>
 </dd></dl>
 
 </div>
@@ -70,7 +70,7 @@ as it does.  These functions are considered the game&#8217;s core, and therefore
 live within the game.py module.</p>
 <dl class="function">
 <dt id="game.create_character">
-<code class="descclassname">game.</code><code class="descname">create_character</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#game.create_character" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">game.</code><code class="descname">create_character</code><span class="sig-paren">(</span><em>input=&lt;built-in function input&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#game.create_character" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates and returns new game_map after asking for a name</p>
 <p>Asks the user to enter a name.  If the name does not already exist, a new
 game_map will be created using the name and returned.  Loops until a
@@ -177,7 +177,7 @@ somewhere else, you must change the os.chdir() function call below.</p>
 
 <dl class="function">
 <dt id="game.get_simple_answer">
-<code class="descclassname">game.</code><code class="descname">get_simple_answer</code><span class="sig-paren">(</span><em>question</em><span class="sig-paren">)</span><a class="headerlink" href="#game.get_simple_answer" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">game.</code><code class="descname">get_simple_answer</code><span class="sig-paren">(</span><em>question</em>, <em>input=&lt;built-in function input&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#game.get_simple_answer" title="Permalink to this definition">¶</a></dt>
 <dd><p>Return True or False based on a yes/no response to a question</p>
 <p>Contains a dictionary that maps the yes/no strings to True/False values.
 If the user&#8217;s response appears in the dictionary, it is used as the key
@@ -259,7 +259,7 @@ itself returns a game_map.</p>
 
 <dl class="function">
 <dt id="game.play_game">
-<code class="descclassname">game.</code><code class="descname">play_game</code><span class="sig-paren">(</span><em>game_map</em><span class="sig-paren">)</span><a class="headerlink" href="#game.play_game" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">game.</code><code class="descname">play_game</code><span class="sig-paren">(</span><em>game_map</em>, <em>input=&lt;built-in function input&gt;</em><span class="sig-paren">)</span><a class="headerlink" href="#game.play_game" title="Permalink to this definition">¶</a></dt>
 <dd><p>Enters the main game loop</p>
 <p>The game loop is considered occuring while a command is in progress.  This
 is because every time the game loops, the user needs to enter a new
