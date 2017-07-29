@@ -117,7 +117,7 @@ def get_saves_dir():
 
     Also checks if the program is running from root.  Until a proper
     cross-platform system is implemented, the user may run the program in
-    QPython3.  The "Seven Stories" directory must be placed inside
+    QPython3.  The "SevenStories" directory must be placed inside
     "/storage/emulated/0/qpython/scripts3/".  If you decide to place it
     somewhere else, you must change the os.chdir() function call below.
 
@@ -127,11 +127,12 @@ def get_saves_dir():
     """
     if os.name == "posix":
         if os.getcwd() == "/":  # Handles QPython3 is game directory is in scripts3
-            os.chdir("/storage/emulated/0/qpython/scripts3/Seven Stories/SevenStories")
-        saves_dir = os.path.abspath("../saves") + "/"
+            saves_dir = "/storage/emulated/0/qpython/scripts3/SevenStories/SevenStories/saves"
+        else:
+            saves_dir = "{}/.SevenStories/saves/".format(os.getenv("HOME"))
 
     else:
-        saves_dir = os.path.abspath("..\\saves") + "\\"
+        saves_dir = "{}\\SevenStories\\saves\\".format(os.getenv("LOCALAPPDATA"))
 
     if not os.path.exists(saves_dir):
         os.makedirs(saves_dir)
