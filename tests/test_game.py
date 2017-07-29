@@ -45,9 +45,9 @@ class TestGame(unittest.TestCase):
         """Testing get_saves_dir function
 
         The project directory is expected to contain the saves directory,
-        just as 'Seven Stories/saves'.  This test will check the returned
+        just as 'SevenStories/saves'.  This test will check the returned
         absolute path from the get_saves_dir function and ensure that
-        the ending is 'Seven Stories/saves'.
+        the ending is 'SevenStories/saves'.
 
         Test handles differences between how operating systems handle
         slashes in directory paths.
@@ -55,12 +55,12 @@ class TestGame(unittest.TestCase):
         saves_dir = game.get_saves_dir()
 
         if os.name == "posix":
-            self.assertEqual(saves_dir[len(saves_dir) - 20:],
-                             "Seven Stories/saves/",
+            self.assertEqual(saves_dir[len(saves_dir) - 19:],
+                             "SevenStories/saves/",
                              "Incorrect saves directory returned!")
         else:
-            self.assertEqual(saves_dir[len(saves_dir) - 20:],
-                             "Seven Stories\\saves\\",
+            self.assertEqual(saves_dir[len(saves_dir) - 19:],
+                             "SevenStories\\saves\\",
                              "Incorrect saves directory returned!")
 
     def test_get_simple_answer(self):
