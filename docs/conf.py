@@ -19,7 +19,7 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../Seven Stories'))
+sys.path.insert(0, os.path.abspath('../SevenStories'))
 
 
 # -- General configuration ------------------------------------------------
