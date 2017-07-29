@@ -10,7 +10,7 @@ import pickle
 from SevenStories import gamemap
 
 
-def play_game(game_map):
+def play_game(game_map, input=input):
     """Enters the main game loop
 
     The game loop is considered occuring while a command is in progress.  This
@@ -45,7 +45,7 @@ def play_game(game_map):
     :rtype: str or None
 
     """
-    import parse
+    from SevenStories import parse
 
     cmd_in_prog = True
     while cmd_in_prog:
@@ -127,7 +127,7 @@ def get_saves_dir():
     """
     if os.name == "posix":
         if os.getcwd() == "/":  # Handles QPython3 is game directory is in scripts3
-            os.chdir("/storage/emulated/0/qpython/scripts3/Seven Stories/Seven Stories")
+            os.chdir("/storage/emulated/0/qpython/scripts3/Seven Stories/SevenStories")
         saves_dir = os.path.abspath("../saves") + "/"
 
     else:
@@ -139,7 +139,7 @@ def get_saves_dir():
     return saves_dir
 
 
-def get_simple_answer(question):
+def get_simple_answer(question, input=input):
     """Return True or False based on a yes/no response to a question
 
     Contains a dictionary that maps the yes/no strings to True/False values.
@@ -235,7 +235,7 @@ def reset_character(character_name, echo=True):
         print("Reset {}.".format(character_name))
 
 
-def create_character():
+def create_character(input=input):
     """Creates and returns new game_map after asking for a name
 
     Asks the user to enter a name.  If the name does not already exist, a new

@@ -22,6 +22,7 @@ def main():
     arg = game.play_game(game_map)
 
     if arg == "quit":
+        print("--------------------------------------------")
         return
 
 
