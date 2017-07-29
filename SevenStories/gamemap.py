@@ -1,7 +1,7 @@
 """Module to isolate the class GameMap"""
 
 
-from SevenStories import player
+import player
 
 
 class GameMap:
