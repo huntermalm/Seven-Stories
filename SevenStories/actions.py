@@ -34,7 +34,7 @@ def health(game_map, action_object):
 
 def save(game_map, action_object):
     """Save the game"""
-    from game import save_game
+    from SevenStories.game import save_game
     save_game(game_map)
 
 
@@ -56,7 +56,7 @@ def quit(game_map, action_object):
 
     """
     if not game_map.just_saved:
-        from game import get_simple_answer
+        from SevenStories.game import get_simple_answer
         question = "Would you like to save before quitting (y\\n)? "
         do_save = get_simple_answer(question)
         print("--------------------------------------------")
@@ -64,7 +64,7 @@ def quit(game_map, action_object):
             save(game_map, action_object)
             print("--------------------------------------------")
 
-    print("Quitting..\n")
+    print("Quitting..")
 
     return "quit"
 
