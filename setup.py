@@ -7,8 +7,7 @@ setup(
     license="MIT",
     author="Hunter Malm",
     author_email="huntermalm@gmail.com",
-    packages=["SevenStories"],
-    install_requires=[
-        "SevenStories"
-        ]
+    url="https://github.com/huntermalm/SevenStories",
+    download_url="https://github.com/huntermalm/SevenStories/archive/v0.1.tar.gz",
+    packages=["SevenStories"]
 )

@@ -45,7 +45,7 @@ def play_game(game_map, input=input):
     :rtype: str or None
 
     """
-    from SevenStories import parse
+    import parse
 
     cmd_in_prog = True
     while cmd_in_prog:
