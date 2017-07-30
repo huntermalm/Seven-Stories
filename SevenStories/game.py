@@ -333,6 +333,7 @@ def load_options():
         print("> load [number]")
         print("> reset [number]")
         print("> delete [number]")
+        print("> quit")
 
         while True:
             print("--------------------------------------------")
@@ -352,6 +353,8 @@ def load_options():
                         elif parts[0] == "delete":
                             delete_character(character_names[parts[1]])
                             break
+                        elif parts[0] == "quit":
+                            quit()
                         else:
                             print("Invalid command!")
                     except IndexError:
