@@ -19,6 +19,8 @@ def main(game_map=None):
     """
     if game_map is None:
         game_map = game.load_options()
+        if game_map is None:
+            return
     print("--------------------------------------------")
     arg = game.play_game(game_map)
 

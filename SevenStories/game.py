@@ -354,7 +354,7 @@ def load_options():
                             delete_character(character_names[parts[1]])
                             break
                         elif parts[0] == "quit":
-                            quit()
+                            return
                         else:
                             print("Invalid command!")
                     except IndexError:
