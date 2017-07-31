@@ -9,8 +9,7 @@ Contains the following lists:
 
 
 actions = [
-    "health", "location", "inventory", "name", "go",
-    "open", "save", "quit"
+    "health", "location", "name", "save", "quit"
     ]
 
 adjectives = [

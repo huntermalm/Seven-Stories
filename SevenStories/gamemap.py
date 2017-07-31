@@ -31,15 +31,17 @@ class GameMap:
     """
 
     def __init__(self, name):
-        self.version = "0.1.1"
+        self.version = "0.2.0"
         self.just_saved = False
         self.locations = []
 
-        # Location initializations
-        self.first_room = locations.Location("First room")
-
         # Location appendages
-        self.locations.append(self.first_room)
+        self.locations.append(locations.Location("First room"))
 
         # Create the player
-        self.player = player.Player(name, self.first_room)
+        self.player = player.Player(name, self.get_location("First room"))
+
+    def get_location(self, location_name):
+        for location in self.locations:
+            if location.name == location_name:
+                return location

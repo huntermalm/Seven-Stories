@@ -9,10 +9,12 @@ def update(game_map):
     """
     updated = False
 
-    # Example:
-    # if game_map.version == "0.1.1":
-    #     updated = True
-    #     game_map.player.max_weight = 10
-    #     game_map.version = "0.1.2"
+    if game_map.version == "0.1.1":
+        import locations
+        updated = True
+        game_map.locations = []
+        game_map.locations.append(locations.Location("First room"))
+        game_map.player.location = game_map.get_location("First room")
+        game_map.version = "0.2.0"
 
     return updated
