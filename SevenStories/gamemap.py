@@ -24,7 +24,7 @@ class GameMap:
     | first_room          | class Location | Temporary first room for the player      |
     +---------------------+----------------+------------------------------------------+
     | player              | Player         | Instance of the Player                   |
-    +---------------------+----------------+---------------------------------------
+    +---------------------+----------------+------------------------------------------+
 
     :param str name: Name to assign to the Player instance
 

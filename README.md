@@ -26,7 +26,8 @@ Grab the latest setup from the downloads below, and run through the basic instal
 
 ## Downloads
 
-* [SevenStories-0.1.1-setup.exe](https://github.com/huntermalm/SevenStories/releases/download/v0.1.1/SevenStories-0.1.1-setup.exe) <- *Recommended*
+* [SevenStories-0.2.0-setup.exe](https://github.com/huntermalm/SevenStories/releases/download/v0.2.0/SevenStories-0.2.0-setup.exe) <- *Recommended*
+* [SevenStories-0.1.1-setup.exe](https://github.com/huntermalm/SevenStories/releases/download/v0.1.1/SevenStories-0.1.1-setup.exe)
 * [SevenStories-0.1a1-setup.exe](https://github.com/huntermalm/SevenStories/releases/download/v0.1a1/SevenStories-0.1a1-setup.exe)
 
 ## Authors

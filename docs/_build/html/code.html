@@ -551,6 +551,12 @@ tuples as &#8220;function, action_object&#8221;, and calling them as
 </dd></dl>
 
 <dl class="function">
+<dt id="actions.location">
+<code class="descclassname">actions.</code><code class="descname">location</code><span class="sig-paren">(</span><em>game_map</em>, <em>action_object</em><span class="sig-paren">)</span><a class="headerlink" href="#actions.location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Display the player&#8217;s location</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="actions.name">
 <code class="descclassname">actions.</code><code class="descname">name</code><span class="sig-paren">(</span><em>game_map</em>, <em>action_object</em><span class="sig-paren">)</span><a class="headerlink" href="#actions.name" title="Permalink to this definition">¶</a></dt>
 <dd><p>Display the player&#8217;s name</p>
@@ -594,12 +600,13 @@ properly quit the game.</p>
 <dt id="gamemap.GameMap">
 <em class="property">class </em><code class="descclassname">gamemap.</code><code class="descname">GameMap</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#gamemap.GameMap" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to define the attributes and behaviors of a gamemap</p>
-<p>The GameMap stores the Player instance.</p>
+<p>The GameMap stores the Player instance and defines a single location
+called &#8220;First room&#8221;</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="29%" />
-<col width="14%" />
-<col width="58%" />
+<col width="27%" />
+<col width="20%" />
+<col width="53%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Instance Attributes</th>
@@ -608,11 +615,23 @@ properly quit the game.</p>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>just_saved</td>
+<tr class="row-even"><td>version</td>
+<td>string</td>
+<td>Version of the game</td>
+</tr>
+<tr class="row-odd"><td>just_saved</td>
 <td>boolean</td>
 <td>True/False is previous action was &#8220;save&#8221;</td>
 </tr>
-<tr class="row-odd"><td>player</td>
+<tr class="row-even"><td>locations</td>
+<td>list</td>
+<td>List of all location objects</td>
+</tr>
+<tr class="row-odd"><td>first_room</td>
+<td>class Location</td>
+<td>Temporary first room for the player</td>
+</tr>
+<tr class="row-even"><td>player</td>
 <td>Player</td>
 <td>Instance of the Player</td>
 </tr>
@@ -634,13 +653,13 @@ properly quit the game.</p>
 <p>Module to isolate the class Player</p>
 <dl class="class">
 <dt id="player.Player">
-<em class="property">class </em><code class="descclassname">player.</code><code class="descname">Player</code><span class="sig-paren">(</span><em>name</em><span class="sig-paren">)</span><a class="headerlink" href="#player.Player" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="descclassname">player.</code><code class="descname">Player</code><span class="sig-paren">(</span><em>name</em>, <em>start_location</em><span class="sig-paren">)</span><a class="headerlink" href="#player.Player" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to define the attributes and behaviors of a player</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="42%" />
-<col width="12%" />
-<col width="46%" />
+<col width="34%" />
+<col width="28%" />
+<col width="38%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Instance Attributes</th>
@@ -657,13 +676,21 @@ properly quit the game.</p>
 <td>int</td>
 <td>Health (default=100)</td>
 </tr>
+<tr class="row-even"><td>location</td>
+<td>class Location</td>
+<td>Player&#8217;s location</td>
+</tr>
 </tbody>
 </table>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>name</strong> (<em>str</em>) &#8211; Name to assign to Player instance</td>
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<em>str</em>) &#8211; Name to assign to Player instance</li>
+<li><strong>start_location</strong> (<em>class Location</em>) &#8211; Location to initially assign to player instance</li>
+</ul>
+</td>
 </tr>
 </tbody>
 </table>
@@ -678,6 +705,7 @@ properly quit the game.</p>
 <dd><ul class="first last simple">
 <li>actions</li>
 <li>adjectives</li>
+<li>locations</li>
 </ul>
 </dd>
 </dl>

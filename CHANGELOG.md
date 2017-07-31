@@ -5,7 +5,7 @@
 ### Additions
 
 * Update system to automatically update player save when loading a player
-* Start to a location system.  For now, there is only one location called "First room" which is the player's inital location
+* Start to a location system.  For now, there is only one location called "First room" which is the player's initial location
 * New action "location" to display the player's current location
 
 
@@ -26,7 +26,7 @@ This is the first initial pre-release.  The contents of this release are intende
 * Text parser removes various punctuation characters from user's command.
 * A game loop to continuously invoke the text parser.  The loop can be stopped with the "quit" action.
 * Saving/loading/deleting/resetting characters in a main menu-like interface.
-* The saves directory is operating system dependant:
+* The saves directory is operating system dependent:
   * Windows: "%LocalAppData%\SevenStories\saves"
   * Linux: "~/.SevenStories/saves"
 * Four usable actions: name, health, save, quit
