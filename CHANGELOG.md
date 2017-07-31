@@ -1,8 +1,17 @@
 # Change Log
 
+## [v0.2.0](https://github.com/huntermalm/SevenStories/tree/v0.2.0) (2017-07-31)
+
+### Additions
+
+* Update system to automatically update player save when loading a player
+* Start to a location system.  For now, there is only one location called "First room" which is the player's inital location
+* New action "location" to display the player's current location
+
+
 ## [v0.1.1](https://github.com/huntermalm/SevenStories/tree/v0.1.1) (2017-07-30)
 
-## Additions
+### Additions
 
 * Option to quit in the main menu
 * Temporary game icon
