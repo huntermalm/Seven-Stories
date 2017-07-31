@@ -65,8 +65,7 @@ def play_game(game_map, input=input):
     """
     import parse
 
-    cmd_in_prog = True
-    while cmd_in_prog:
+    while True:
         load = parse.parse_command(input("Enter a command: "))
         arg = execute(game_map, load)
 
