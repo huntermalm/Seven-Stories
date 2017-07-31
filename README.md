@@ -2,30 +2,39 @@
 
 Text-adventure game in very early stages of development.
 
-### Latest Release Notes
+## Development and Testing
 
-[**v0.1a1**](https://github.com/huntermalm/SevenStories/releases/tag/v0.1a1)
+These are the steps to install a copy of SevenStories on your local machine for development and testing purposes.
 
-This is the first initial pre-release.  The contents of this release are intended to demonstrate the basic core game functionality at a very simple, but working stage.  Below are the features presented in this release:
+It is recommended to clone a copy of the project repository to be able to use project features that have been implemented.  You may clone the project's repository with:
 
-##### Additions
+> git clone https://github.com/huntermalm/SevenStories.git
 
-* A text parser capable of handling multiple actions in a single command.
-* Text parser removes various punctuation characters from user's command.
-* A game loop to continuously invoke the text parser.  The loop can be stopped with the "quit" action.
-* Saving/loading/deleting/resetting characters in a main menu-like interface.
-* The saves directory is operating system dependant:
-  * Windows: "%LocalAppData%\SevenStories\saves"
-  * Linux: "~/.SevenStories/saves"
-* Four usable actions: name, health, save, quit
-* A reminder to save in the event that a user tries to quit and the previous action was not "save".
+You may also download a .zip of the project [here](https://github.com/huntermalm/SevenStories/archive/master.zip) for local purposes.
 
+To launch the game from the source code, you run the following from the projects directory:
 
-### Documentation
+> python3 ./SevenStories/main.py
+
+#### Documentation
 
 A more extensive understanding of the game's functionality can be observed by reading the documentation, provided [here](http://sevenstories.readthedocs.io/en/latest/index.html).
 
+## Installation
 
-### Releases
+Grab the latest setup from the downloads below, and run through the basic installation wizard.
 
-Click [here](https://github.com/huntermalm/SevenStories/releases) for releases.
+## Downloads
+
+* [SevenStories-0.1.1-setup.exe](https://github.com/huntermalm/SevenStories/releases/download/v0.1.1/SevenStories-0.1.1-setup.exe) <- *Recommended*
+* [SevenStories-0.1a1-setup.exe](https://github.com/huntermalm/SevenStories/releases/download/v0.1a1/SevenStories-0.1a1-setup.exe)
+
+## Authors
+
+* Hunter Malm - *Lead project designer* - [huntermalm](https://github.com/huntermalm)
+
+See also the list of [contributors](https://github.com/huntermalm/SevenStories/contributors) who participated in this project.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](https://github.com/huntermalm/SevenStories/blob/master/LICENSE) file for details.
