@@ -2,9 +2,10 @@
 
 ## [v0.1.1](https://github.com/huntermalm/SevenStories/tree/v0.1.1) (2017-07-30)
 
-### Additions
+## Additions
 
 * Option to quit in the main menu
+* Temporary game icon
 
 ## [v0.1a1](https://github.com/huntermalm/SevenStories/tree/v0.1a1) (2017-07-29)
 
