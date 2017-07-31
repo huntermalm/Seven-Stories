@@ -54,11 +54,12 @@ interpreter as the main program, then the main() function will execute.</p>
 <dt id="main.main">
 <code class="descclassname">main.</code><code class="descname">main</code><span class="sig-paren">(</span><em>game_map=None</em><span class="sig-paren">)</span><a class="headerlink" href="#main.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is the only function in this module.  It first loads the game_map if
-one is not provided, and then calls the game.play_game() function with
-the loaded game_map.  Notice how game.play_game() is being stored
-as arg.  It does not always return an arg.  This arg allows a user&#8217;s
-action to affect higher levels of the game.  Only very special cases
-should make use of this, such as quitting is used here.</p>
+one is not provided, updates it if any are available, and then calls the
+game.play_game() function with the loaded game_map.  Notice how
+game.play_game() is being stored as arg.  It does not always return an
+arg.  This arg allows a user&#8217;s action to affect higher levels of the game.
+Only very special cases should make use of this, such as quitting is used
+here.</p>
 </dd></dl>
 
 </div>
@@ -334,6 +335,20 @@ already exists, it will be overwritten; if not, it will be created.</p>
 <li><strong>echo=True</strong> (<em>boolean</em>) &#8211; Echos to console if True</li>
 </ul>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.update">
+<code class="descclassname">game.</code><code class="descname">update</code><span class="sig-paren">(</span><em>game_map</em><span class="sig-paren">)</span><a class="headerlink" href="#game.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs updator on game_map, and if any updates occur, prints info and saves</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>game_map</strong> (<em>class GameMap</em>) &#8211; The currently loaded GameMap object</td>
 </tr>
 </tbody>
 </table>
