@@ -101,17 +101,39 @@ def remove_punctuation(command):
 
 
 def construct_object_fullnames(adjective_objs, object_objs):
+    """Constructs fullnames for objects by attaching adjectives
+
+    Not the cleanest function by no means, but it works for now.  The idea
+    is to be able to iterate linearly, checking whether the word is an
+    adjective or an object, and doing things occordingly.  So first, the
+    adjectives and objects are combined into the same list, which is then
+    sorted by their index attributes.  This gets them all together in order
+    as they appeared originally in the user's command.
+
+    While iterating the combined list, if the word object is an adjective, then
+    it gets added to a list of temporary adjectives.  Once the iteration
+    reaches an object word object, it checks if the last word in the temporary
+    adjectives list appeared before it.  If so, then all of the temporary
+    adjectives get concatenated to the object as the object fullname.  This
+    fullname is stored to the object word object as the fullname attribute.
+    Once this is stored, the temporary adjectives get cleared out, and the
+    iteration continues until all of the adjectives are attached to the objects.
+
+    :param adjective_objs: List of adjective word objects
+    :type adjective_objs: list
+    :param object_objs: List of object word objects
+    :type object_objs: list
+
+    """
     combined_list = []
     combined_list.extend(adjective_objs)
     combined_list.extend(object_objs)
     combined_list.sort(key=lambda word_obj: word_obj.index)
 
-    adj_indexes = [adj_obj.index for adj_obj in adjective_objs]
-
     temp_adjs = []
 
     for word_obj in combined_list:
-        if word_obj.index in adj_indexes:
+        if word_obj.word in lists.adjectives:
             temp_adjs.append(word_obj)
         else:
             if temp_adjs:
