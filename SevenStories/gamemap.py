@@ -1,7 +1,7 @@
 """Module to isolate the class GameMap"""
 
 
-from SevenStories import player
+import player
 
 
 class GameMap:
@@ -23,5 +23,6 @@ class GameMap:
     """
 
     def __init__(self, name):
+        self.version = "0.1.1"
         self.just_saved = False
         self.player = player.Player(name)

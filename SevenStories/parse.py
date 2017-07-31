@@ -13,9 +13,9 @@ words that appear in both the user's command and any of the lists.
 """
 
 
-from SevenStories.actions import get_action_dictionary
-from SevenStories import wordtypes
-from SevenStories import lists
+from actions import get_action_dictionary
+import wordtypes
+import lists
 
 
 def parse_command(command):

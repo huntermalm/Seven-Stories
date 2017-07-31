@@ -54,11 +54,12 @@ interpreter as the main program, then the main() function will execute.</p>
 <dt id="main.main">
 <code class="descclassname">main.</code><code class="descname">main</code><span class="sig-paren">(</span><em>game_map=None</em><span class="sig-paren">)</span><a class="headerlink" href="#main.main" title="Permalink to this definition">¶</a></dt>
 <dd><p>This is the only function in this module.  It first loads the game_map if
-one is not provided, and then calls the game.play_game() function with
-the loaded game_map.  Notice how game.play_game() is being stored
-as arg.  It does not always return an arg.  This arg allows a user&#8217;s
-action to affect higher levels of the game.  Only very special cases
-should make use of this, such as quitting is used here.</p>
+one is not provided, updates it if any are available, and then calls the
+game.play_game() function with the loaded game_map.  Notice how
+game.play_game() is being stored as arg.  It does not always return an
+arg.  This arg allows a user&#8217;s action to affect higher levels of the game.
+Only very special cases should make use of this, such as quitting is used
+here.</p>
 </dd></dl>
 
 </div>
@@ -160,7 +161,7 @@ back to the user.</p>
 handle slashes in directory paths.</p>
 <p>Also checks if the program is running from root.  Until a proper
 cross-platform system is implemented, the user may run the program in
-QPython3.  The &#8220;Seven Stories&#8221; directory must be placed inside
+QPython3.  The &#8220;SevenStories&#8221; directory must be placed inside
 &#8220;/storage/emulated/0/qpython/scripts3/&#8221;.  If you decide to place it
 somewhere else, you must change the os.chdir() function call below.</p>
 <table class="docutils field-list" frame="void" rules="none">
@@ -334,6 +335,41 @@ already exists, it will be overwritten; if not, it will be created.</p>
 <li><strong>echo=True</strong> (<em>boolean</em>) &#8211; Echos to console if True</li>
 </ul>
 </td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="game.update">
+<code class="descclassname">game.</code><code class="descname">update</code><span class="sig-paren">(</span><em>game_map</em><span class="sig-paren">)</span><a class="headerlink" href="#game.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs updator on game_map, and if any updates occur, prints info and saves</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>game_map</strong> (<em>class GameMap</em>) &#8211; The currently loaded GameMap object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-updator">
+<span id="updator-py"></span><h2>updator.py<a class="headerlink" href="#module-updator" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="updator.update">
+<code class="descclassname">updator.</code><code class="descname">update</code><span class="sig-paren">(</span><em>game_map</em><span class="sig-paren">)</span><a class="headerlink" href="#updator.update" title="Permalink to this definition">¶</a></dt>
+<dd><p>Updated the game_map depending on version</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>game_map</strong> (<em>class GameMap</em>) &#8211; The currently loaded GameMap object</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">True/False depending on if any updates occurred</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">boolean</td>
 </tr>
 </tbody>
 </table>
@@ -659,6 +695,7 @@ properly quit the game.</p>
 <li><a class="reference internal" href="#">Auto Generated Documentation</a><ul>
 <li><a class="reference internal" href="#module-main">main.py</a></li>
 <li><a class="reference internal" href="#module-game">game.py</a></li>
+<li><a class="reference internal" href="#module-updator">updator.py</a></li>
 <li><a class="reference internal" href="#module-parse">parse.py</a></li>
 <li><a class="reference internal" href="#module-wordtypes">wordtypes.py</a></li>
 <li><a class="reference internal" href="#module-actions">actions.py</a></li>

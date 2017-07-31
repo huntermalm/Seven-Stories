@@ -10,6 +10,11 @@ game.py
 .. automodule:: game
     :members:
 
+updator.py
+----------
+.. automodule:: updator
+    :members:
+
 parse.py
 --------
 .. automodule:: parse

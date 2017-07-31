@@ -7,7 +7,25 @@ live within the game.py module.
 """
 import os
 import pickle
-from SevenStories import gamemap
+import gamemap
+
+
+def update(game_map):
+    """Runs updator on game_map, and if any updates occur, prints info and saves
+
+    :param game_map: The currently loaded GameMap object
+    :type game_map: class GameMap
+
+    """
+    import updator
+
+    old_version = game_map.version
+
+    if updator.update(game_map):
+        new_version = game_map.version
+        print("--------------------------------------------")
+        print("Updated {} from {} to {}.".format(game_map.player.name, old_version, new_version))
+        save_game(game_map, echo=False)
 
 
 def play_game(game_map, input=input):
@@ -45,7 +63,7 @@ def play_game(game_map, input=input):
     :rtype: str or None
 
     """
-    from SevenStories import parse
+    import parse
 
     cmd_in_prog = True
     while cmd_in_prog:
@@ -333,6 +351,7 @@ def load_options():
         print("> load [number]")
         print("> reset [number]")
         print("> delete [number]")
+        print("> quit")
 
         while True:
             print("--------------------------------------------")
@@ -352,6 +371,8 @@ def load_options():
                         elif parts[0] == "delete":
                             delete_character(character_names[parts[1]])
                             break
+                        elif parts[0] == "quit":
+                            return
                         else:
                             print("Invalid command!")
                     except IndexError:
