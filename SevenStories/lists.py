@@ -3,6 +3,7 @@
 Contains the following lists:
     * actions
     * adjectives
+    * locations
 
 """
 
@@ -13,5 +14,9 @@ actions = [
     ]
 
 adjectives = [
-    "red", "green", "blue"
+    "red", "green", "blue", "first"
+    ]
+
+locations = [
+    "room"
     ]

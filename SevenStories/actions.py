@@ -32,6 +32,11 @@ def health(game_map, action_object):
     print("Health: {}%".format(game_map.player.health))
 
 
+def location(game_map, action_object):
+    """Display the player's location"""
+    print("Location: {}".format(game_map.player.location.name))
+
+
 def save(game_map, action_object):
     """Save the game"""
     from game import save_game
@@ -77,7 +82,8 @@ def get_action_dictionary():
 
     """
     action_dictionary = {
-        "name": name, "health": health, "save": save, "quit": quit
+        "name": name, "health": health, "save": save, "quit": quit,
+        "location": location
         }
 
     return action_dictionary
