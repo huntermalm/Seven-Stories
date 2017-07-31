@@ -3,17 +3,21 @@
 Contains the following lists:
     * actions
     * adjectives
+    * locations
 
 """
 
 
 actions = [
-    "health", "location", "inventory", "name", "go",
-    "open", "save", "quit"
+    "health", "location", "name", "save", "quit"
     ]
 
 adjectives = [
-    "red", "green", "blue"
+    "red", "green", "blue", "first"
+    ]
+
+locations = [
+    "room"
     ]
 
 items = [
