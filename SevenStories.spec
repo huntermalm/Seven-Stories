@@ -4,9 +4,8 @@ block_cipher = None
 
 
 a = Analysis(['SevenStories\\main.py'],
-             pathex=[
-                 'D:\\Portfolio\\Code\\Python\\Personal Projects\\SevenStories',
-                 'D:\\Portfolio\\Code\\Python\\Personal Projects\\SevenStories\\SevenStories'],
+             pathex=['D:\\Portfolio\\Code\\Python\\Personal Projects\\SevenStories',
+             'D:\\Portfolio\\Code\\Python\\Personal Projects\\SevenStories\\SevenStories'],
              binaries=[],
              datas=[],
              hiddenimports=[],
@@ -17,7 +16,7 @@ a = Analysis(['SevenStories\\main.py'],
              win_private_assemblies=False,
              cipher=block_cipher)
 pyz = PYZ(a.pure, a.zipped_data,
-          cipher=block_cipher)
+             cipher=block_cipher)
 exe = EXE(pyz,
           a.scripts,
           a.binaries,
@@ -27,4 +26,4 @@ exe = EXE(pyz,
           debug=False,
           strip=False,
           upx=True,
-          console=True)
+          console=True , icon='SevenStories-icon.ico')
