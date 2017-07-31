@@ -10,6 +10,24 @@ import pickle
 import gamemap
 
 
+def update(game_map):
+    """Runs updator on game_map, and if any updates occur, prints info and saves
+
+    :param game_map: The currently loaded GameMap object
+    :type game_map: class GameMap
+
+    """
+    import updator
+
+    old_version = game_map.version
+
+    if updator.update(game_map):
+        new_version = game_map.version
+        print("--------------------------------------------")
+        print("Updated {} from {} to {}.".format(game_map.player.name, old_version, new_version))
+        save_game(game_map, echo=False)
+
+
 def play_game(game_map, input=input):
     """Enters the main game loop
 
