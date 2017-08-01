@@ -20,6 +20,10 @@ To launch the game from the source code, you run the following from the projects
 
 A more extensive understanding of the game's functionality can be observed by reading the documentation, provided [here](http://sevenstories.readthedocs.io/en/latest/index.html).
 
+#### Project Goals
+
+An unorganized set of project goals can be found [here](http://sevenstories.readthedocs.io/en/latest/goals.html).  These goals have no deadlines or schedule, however, one can be execpted in the near future after the project gets more organized.
+
 ## Installation
 
 Grab the latest setup from the downloads below, and run through the basic installation wizard.
