@@ -6,7 +6,7 @@
 Welcome to Seven Stories's documentation!
 =========================================
 
-This project still in the **very** early stages of development.  More
+This project is still in the **very** early stages of development.  More
 information will be provided later.
 
 .. toctree::
@@ -14,6 +14,7 @@ information will be provided later.
    :caption: Contents:
 
    code
+   goals
 
 Indices and tables
 ==================

@@ -12,17 +12,17 @@ class GameMap:
     The GameMap stores the Player instance and defines a single location
     called "First room"
 
-    +---------------------+----------------+------------------------------------------+
-    | Instance Attributes | Type           | Description                              |
-    +=====================+================+==========================================+
-    | version             | string         | Version of the game                      |
-    +---------------------+----------------+------------------------------------------+
-    | just_saved          | boolean        | True/False is previous action was "save" |
-    +---------------------+----------------+------------------------------------------+
-    | locations           | list           | List of all location objects             |
-    +---------------------+----------------+------------------------------------------+
-    | player              | Player         | Instance of the Player                   |
-    +---------------------+----------------+------------------------------------------+
+    +---------------------+---------+------------------------------------------+
+    | Instance Attributes | Type    | Description                              |
+    +=====================+=========+==========================================+
+    | version             | string  | Version of the game                      |
+    +---------------------+---------+------------------------------------------+
+    | just_saved          | boolean | True/False is previous action was "save" |
+    +---------------------+---------+------------------------------------------+
+    | locations           | list    | List of all location objects             |
+    +---------------------+---------+------------------------------------------+
+    | player              | Player  | Instance of the Player                   |
+    +---------------------+---------+------------------------------------------+
 
     :param str name: Name to assign to the Player instance
 
