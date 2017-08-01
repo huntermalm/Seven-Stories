@@ -35,6 +35,11 @@ gamemap.py
 .. automodule:: gamemap
     :members:
 
+locations.py
+------------
+.. automodule:: locations
+    :members:
+
 player.py
 ---------
 .. automodule:: player
