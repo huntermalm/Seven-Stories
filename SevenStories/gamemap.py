@@ -19,7 +19,7 @@ class GameMap:
     +---------------------+---------+------------------------------------------+
     | just_saved          | boolean | True/False is previous action was "save" |
     +---------------------+---------+------------------------------------------+
-    | locations           | list    | List of all location objects             |
+    | locations           | dict    | List of all location objects             |
     +---------------------+---------+------------------------------------------+
     | player              | Player  | Instance of the Player                   |
     +---------------------+---------+------------------------------------------+
@@ -29,17 +29,17 @@ class GameMap:
     """
 
     def __init__(self, name):
-        self.version = "0.2.0"
+        self.version = "0.3.0"
         self.just_saved = False
-        self.locations = []
+        self.locations = {}
 
         # Location appendages
-        self.locations.append(locations.Location("First room"))
+        self.locations["first room"] = locations.Location("First room")
+        self.locations["second room"] = locations.Location("Second room")
+
+        # Location connections
+        self.locations["first room"].available_locations["second room"] = self.locations["second room"]
+        self.locations["second room"].available_locations["first room"] = self.locations["first room"]
 
         # Create the player
-        self.player = player.Player(name, self.get_location("First room"))
-
-    def get_location(self, location_name):
-        for location in self.locations:
-            if location.name == location_name:
-                return location
+        self.player = player.Player(name, self.locations["first room"])

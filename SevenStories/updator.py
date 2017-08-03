@@ -14,7 +14,18 @@ def update(game_map):
         updated = True
         game_map.locations = []
         game_map.locations.append(locations.Location("First room"))
-        game_map.player.location = game_map.get_location("First room")
+        game_map.player.location = game_map.locations[0]
         game_map.version = "0.2.0"
+
+    if game_map.version == "0.2.0":
+        import locations
+        first_room = game_map.locations[0]
+        del game_map.locations
+        game_map.locations = {}
+        game_map.locations["first room"] = first_room
+        game_map.locations["second room"] = locations.Location("Second room")
+        game_map.locations["first room"].available_locations["second room"] = game_map.locations["second room"]
+        game_map.locations["second room"].available_locations["first room"] = game_map.locations["first room"]
+        game_map.version = "0.3.0"
 
     return updated

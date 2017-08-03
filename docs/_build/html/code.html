@@ -390,6 +390,36 @@ are imported.  These lists contain the words that are recognized during
 parsing.  The parse_command() function will only create word objects with the
 words that appear in both the user&#8217;s command and any of the lists.</p>
 <dl class="function">
+<dt id="parse.add_adjectives_to_objects">
+<code class="descclassname">parse.</code><code class="descname">add_adjectives_to_objects</code><span class="sig-paren">(</span><em>adjective_objs</em>, <em>object_objs</em><span class="sig-paren">)</span><a class="headerlink" href="#parse.add_adjectives_to_objects" title="Permalink to this definition">¶</a></dt>
+<dd><p>Adds adjective objects to object objects</p>
+<p>Not the cleanest function by no means, but it works for now.  The idea
+is to be able to iterate linearly, checking whether the word is an
+adjective or an object, and doing things occordingly.  So first, the
+adjectives and objects are combined into the same list, which is then
+sorted by their index attributes.  This gets them all together in order
+as they appeared originally in the user&#8217;s command.</p>
+<p>While iterating the combined list, if the word object is an adjective, then
+it gets added to a list of temporary adjectives.  Once the iteration
+reaches an object word object, it checks if the last word in the temporary
+adjectives list appeared before it.  If so, then all of the temporary
+adjectives objects get added to the object object&#8217;s adjectives attribute
+and the temporary adjectives list is cleared.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>adjective_objs</strong> (<em>list</em>) &#8211; List of adjective word objects</li>
+<li><strong>object_objs</strong> (<em>list</em>) &#8211; List of object word objects</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
 <dt id="parse.parse_command">
 <code class="descclassname">parse.</code><code class="descname">parse_command</code><span class="sig-paren">(</span><em>command</em><span class="sig-paren">)</span><a class="headerlink" href="#parse.parse_command" title="Permalink to this definition">¶</a></dt>
 <dd><p>Parse a user&#8217;s command and return a load</p>
@@ -469,6 +499,12 @@ however, an action word object can be simplified as just an action object.</p>
 </dd></dl>
 
 <dl class="class">
+<dt id="wordtypes.Object">
+<em class="property">class </em><code class="descclassname">wordtypes.</code><code class="descname">Object</code><span class="sig-paren">(</span><em>word</em>, <em>index</em>, <em>object_type</em><span class="sig-paren">)</span><a class="headerlink" href="#wordtypes.Object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Class to define the attributes and behaviors of an action object</p>
+</dd></dl>
+
+<dl class="class">
 <dt id="wordtypes.Preposition">
 <em class="property">class </em><code class="descclassname">wordtypes.</code><code class="descname">Preposition</code><span class="sig-paren">(</span><em>word</em>, <em>index</em><span class="sig-paren">)</span><a class="headerlink" href="#wordtypes.Preposition" title="Permalink to this definition">¶</a></dt>
 <dd><p>Class to define the attributes and behaviors of a preposition object</p>
@@ -543,6 +579,12 @@ tuples as &#8220;function, action_object&#8221;, and calling them as
 </tr>
 </tbody>
 </table>
+</dd></dl>
+
+<dl class="function">
+<dt id="actions.go">
+<code class="descclassname">actions.</code><code class="descname">go</code><span class="sig-paren">(</span><em>game_map</em>, <em>action_object</em><span class="sig-paren">)</span><a class="headerlink" href="#actions.go" title="Permalink to this definition">¶</a></dt>
+<dd><p>Moves the player to a location</p>
 </dd></dl>
 
 <dl class="function">
@@ -625,7 +667,7 @@ called &#8220;First room&#8221;</p>
 <td>True/False is previous action was &#8220;save&#8221;</td>
 </tr>
 <tr class="row-even"><td>locations</td>
-<td>list</td>
+<td>dict</td>
 <td>List of all location objects</td>
 </tr>
 <tr class="row-odd"><td>player</td>
@@ -654,9 +696,9 @@ called &#8220;First room&#8221;</p>
 <dd><p>Class to define the attributes and behaviors of a location</p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="42%" />
-<col width="12%" />
-<col width="46%" />
+<col width="33%" />
+<col width="10%" />
+<col width="57%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head">Instance Attributes</th>
@@ -668,6 +710,10 @@ called &#8220;First room&#8221;</p>
 <tr class="row-even"><td>name</td>
 <td>str</td>
 <td>Name set by parameter</td>
+</tr>
+<tr class="row-odd"><td>available_location</td>
+<td>list</td>
+<td>List of available Location objects</td>
 </tr>
 </tbody>
 </table>
@@ -740,6 +786,8 @@ called &#8220;First room&#8221;</p>
 <li>actions</li>
 <li>adjectives</li>
 <li>locations</li>
+<li>items</li>
+<li>containers</li>
 </ul>
 </dd>
 </dl>
