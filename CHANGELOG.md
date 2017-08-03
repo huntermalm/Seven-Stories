@@ -1,5 +1,18 @@
 # Change Log
 
+## [v0.3.0](https://github.com/huntermalm/SevenStories/tree/v0.3.0) (2017-08-03)
+
+### Additions
+
+* Start of location system
+* Moving system through the new action function: go
+* Working direct object system:
+
+    > go to the second room
+
+* Word filter system to remove unnecessary words that may interfere with the text parser
+
+
 ## [v0.2.0](https://github.com/huntermalm/SevenStories/tree/v0.2.0) (2017-07-31)
 
 ### Additions
