@@ -35,6 +35,7 @@ class Action(Word):
 
     def __init__(self, word, index):
         super().__init__(word, index)
+        direct_objects = []
 
 
 class Object(Word):

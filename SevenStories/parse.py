@@ -72,12 +72,40 @@ def parse_command(command):
                         for index, word in enumerate(raw_parts)
                         if word in lists.containers])
 
-    construct_object_fullnames(adjective_objs, object_objs)
+    add_adjectives_to_objects(adjective_objs, object_objs)
+
+    for action_object in action_objs:
+        action_object.direct_objects = get_direct_objects(action_object, object_objs)
+
+        print("DOs for {}: ".format(action_object.word), end="")
+
+        for count, direct_object in enumerate(action_object.direct_objects):
+            print(direct_object.get_fullname(), end="")
+
+            if len(action_object.direct_objects) - 1 != count:
+                print(", ", end="")
+
+        print()
 
     load = [(get_action_dictionary()[action_object.word], action_object)
             for action_object in action_objs]
 
     return load
+
+
+def get_direct_objects(action_object, object_objs):
+    direct_objects = []
+
+    for object_object in object_objs:
+        adjective_count = len(object_object.adjectives)
+        if object_object.index - adjective_count - 1 == action_object.index:
+            direct_objects.append(object_object)
+
+        elif direct_objects:
+            if object_object.index - adjective_count - 1 == direct_objects[len(direct_objects) - 1].index:
+                direct_objects.append(object_object)
+
+    return direct_objects
 
 
 def remove_punctuation(command):
@@ -100,8 +128,8 @@ def remove_punctuation(command):
     return new_command
 
 
-def construct_object_fullnames(adjective_objs, object_objs):
-    """Constructs fullnames for objects by attaching adjectives
+def add_adjectives_to_objects(adjective_objs, object_objs):
+    """Adds adjective objects to object objects
 
     Not the cleanest function by no means, but it works for now.  The idea
     is to be able to iterate linearly, checking whether the word is an
@@ -114,10 +142,8 @@ def construct_object_fullnames(adjective_objs, object_objs):
     it gets added to a list of temporary adjectives.  Once the iteration
     reaches an object word object, it checks if the last word in the temporary
     adjectives list appeared before it.  If so, then all of the temporary
-    adjectives get concatenated to the object as the object fullname.  This
-    fullname is stored to the object word object as the fullname attribute.
-    Once this is stored, the temporary adjectives get cleared out, and the
-    iteration continues until all of the adjectives are attached to the objects.
+    adjectives objects get added to the object object's adjectives attribute
+    and the temporary adjectives list is cleared.
 
     :param adjective_objs: List of adjective word objects
     :type adjective_objs: list
