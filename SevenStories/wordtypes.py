@@ -35,6 +35,24 @@ class Action(Word):
 
     def __init__(self, word, index):
         super().__init__(word, index)
+        direct_objects = []
+
+
+class Object(Word):
+
+    """Class to define the attributes and behaviors of an action object"""
+
+    def __init__(self, word, index, object_type):
+        super().__init__(word, index)
+        self.adjectives = []
+        self.type = object_type
+
+    def get_fullname(self):
+        if self.adjectives:
+            return "".join([adj.word + " " for adj in self.adjectives]) + self.word
+
+        else:
+            return self.word
 
 
 class Adjective(Word):

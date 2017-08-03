@@ -58,18 +58,58 @@ def parse_command(command):
                       for word in raw_parts
                       if word not in lists.filter_words]
 
-    action_objects = [wordtypes.Action(word, index)
-                      for index, word in enumerate(filtered_parts)
-                      if word in lists.actions]
+    action_objs = [wordtypes.Action(word, index)
+                   for index, word in enumerate(filtered_parts)
+                   if word in lists.actions]
 
-    adjective_objects = [wordtypes.Adjective(word, index)
-                         for index, word in enumerate(filtered_parts)
-                         if word in lists.adjectives]
+    adjective_objs = [wordtypes.Adjective(word, index)
+                      for index, word in enumerate(filtered_parts)
+                      if word in lists.adjectives]
+
+    object_objs = [wordtypes.Object(word, index, "item")
+                   for index, word in enumerate(filtered_parts)
+                   if word in lists.items]
+    object_objs.extend([wordtypes.Object(word, index, "location")
+                        for index, word in enumerate(filtered_parts)
+                        if word in lists.locations])
+    object_objs.extend([wordtypes.Object(word, index, "container")
+                        for index, word in enumerate(filtered_parts)
+                        if word in lists.containers])
+
+    add_adjectives_to_objects(adjective_objs, object_objs)
+
+    for action_object in action_objs:
+        action_object.direct_objects = get_direct_objects(action_object, object_objs)
+
+        # print("DOs for {}: ".format(action_object.word), end="")
+
+        # for count, direct_object in enumerate(action_object.direct_objects):
+        #     print(direct_object.get_fullname(), end="")
+
+        #     if len(action_object.direct_objects) - 1 != count:
+        #         print(", ", end="")
+
+        # print()
 
     load = [(get_action_dictionary()[action_object.word], action_object)
-            for action_object in action_objects]
+            for action_object in action_objs]
 
     return load
+
+
+def get_direct_objects(action_object, object_objs):
+    direct_objects = []
+
+    for object_object in object_objs:
+        adjective_count = len(object_object.adjectives)
+        if object_object.index - adjective_count - 1 == action_object.index:
+            direct_objects.append(object_object)
+
+        elif direct_objects:
+            if object_object.index - adjective_count - 1 == direct_objects[len(direct_objects) - 1].index:
+                direct_objects.append(object_object)
+
+    return direct_objects
 
 
 def remove_punctuation(command):
@@ -90,3 +130,45 @@ def remove_punctuation(command):
     new_command = "".join(new_cmd_characters)
 
     return new_command
+
+
+def add_adjectives_to_objects(adjective_objs, object_objs):
+    """Adds adjective objects to object objects
+
+    Not the cleanest function by no means, but it works for now.  The idea
+    is to be able to iterate linearly, checking whether the word is an
+    adjective or an object, and doing things occordingly.  So first, the
+    adjectives and objects are combined into the same list, which is then
+    sorted by their index attributes.  This gets them all together in order
+    as they appeared originally in the user's command.
+
+    While iterating the combined list, if the word object is an adjective, then
+    it gets added to a list of temporary adjectives.  Once the iteration
+    reaches an object word object, it checks if the last word in the temporary
+    adjectives list appeared before it.  If so, then all of the temporary
+    adjectives objects get added to the object object's adjectives attribute
+    and the temporary adjectives list is cleared.
+
+    :param adjective_objs: List of adjective word objects
+    :type adjective_objs: list
+    :param object_objs: List of object word objects
+    :type object_objs: list
+
+    """
+    combined_list = []
+    combined_list.extend(adjective_objs)
+    combined_list.extend(object_objs)
+    combined_list.sort(key=lambda word_obj: word_obj.index)
+
+    temp_adjs = []
+
+    for word_obj in combined_list:
+        if word_obj.word in lists.adjectives:
+            temp_adjs.append(word_obj)
+        else:
+            if temp_adjs:
+                if temp_adjs[len(temp_adjs) - 1].index == word_obj.index - 1:
+                    word_obj.adjectives = temp_adjs
+                    temp_adjs = []
+
+    # [print("{} at {} ({} adjectives)".format(object_obj.get_fullname(), object_obj.index, len(object_obj.adjectives))) for object_obj in object_objs]

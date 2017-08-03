@@ -37,6 +37,27 @@ def location(game_map, action_object):
     print("Location: {}".format(game_map.player.location.name))
 
 
+def go(game_map, action_object):
+    """Moves the player to a location"""
+    player = game_map.player
+
+    if action_object.direct_objects:
+        first_direct_object_fullname = action_object.direct_objects[0].get_fullname()
+
+        if first_direct_object_fullname == player.location.name.lower():
+            print("You are already in the {}.".format(player.location.name))
+
+        elif first_direct_object_fullname in player.location.available_locations:
+            player.location = player.location.available_locations[first_direct_object_fullname]
+            print("{} moved to the {}.".format(player.name, player.location.name))
+
+        else:
+            print("{} is not an available location.".format(first_direct_object_fullname))
+
+    else:
+        print("{} where?".format(action_object.word.capitalize()))
+
+
 def save(game_map, action_object):
     """Save the game"""
     from game import save_game
@@ -83,7 +104,7 @@ def get_action_dictionary():
     """
     action_dictionary = {
         "name": name, "health": health, "save": save, "quit": quit,
-        "location": location
+        "location": location, "go": go, "move": go, "goto": go
         }
 
     return action_dictionary
