@@ -54,12 +54,16 @@ def parse_command(command):
     """
     raw_parts = remove_punctuation(command).split()
 
+    filtered_parts = [word
+                      for word in raw_parts
+                      if word not in lists.filter_words]
+
     action_objects = [wordtypes.Action(word, index)
-                      for index, word in enumerate(raw_parts)
+                      for index, word in enumerate(filtered_parts)
                       if word in lists.actions]
 
     adjective_objects = [wordtypes.Adjective(word, index)
-                         for index, word in enumerate(raw_parts)
+                         for index, word in enumerate(filtered_parts)
                          if word in lists.adjectives]
 
     load = [(get_action_dictionary()[action_object.word], action_object)
