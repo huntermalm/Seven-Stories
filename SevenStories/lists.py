@@ -4,6 +4,8 @@ Contains the following lists:
     * actions
     * adjectives
     * locations
+    * items
+    * containers
 
 """
 
@@ -22,10 +24,6 @@ locations = [
 
 items = [
     "phone", "laptop"
-    ]
-
-locations = [
-    "lobby", "hall"
     ]
 
 containers = [

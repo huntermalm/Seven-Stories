@@ -43,7 +43,15 @@ class Object(Word):
 
     def __init__(self, word, index, object_type):
         super().__init__(word, index)
+        self.adjectives = []
         self.type = object_type
+
+    def get_fullname(self):
+        if self.adjectives:
+            return "".join([adj.word + " " for adj in self.adjectives]) + self.word
+
+        else:
+            return self.word
 
 
 class Adjective(Word):

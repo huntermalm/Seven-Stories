@@ -138,13 +138,7 @@ def construct_object_fullnames(adjective_objs, object_objs):
         else:
             if temp_adjs:
                 if temp_adjs[len(temp_adjs) - 1].index == word_obj.index - 1:
-                    object_fullname = "".join([adj.word + " " for adj in temp_adjs]) + word_obj.word
-                else:
-                    object_fullname = word_obj.word
-            else:
-                object_fullname = word_obj.word
+                    word_obj.adjectives = temp_adjs
+                    temp_adjs = []
 
-            word_obj.fullname = object_fullname
-            temp_adjs = []
-
-    [print("{} at {}".format(object_obj.fullname, object_obj.index)) for object_obj in object_objs]
+    [print("{} at {} ({} adjectives)".format(object_obj.get_fullname(), object_obj.index, len(object_obj.adjectives))) for object_obj in object_objs]
