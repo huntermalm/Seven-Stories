@@ -8,7 +8,8 @@ Contains the following lists:
     * containers
 
 """
-filter_words = ["the", "a", "an", "my", "display"]
+filter_words = ["the", "a", "an", "my", "display",
+                "and"]
 
 actions = [
     "health", "location", "name", "save", "quit"

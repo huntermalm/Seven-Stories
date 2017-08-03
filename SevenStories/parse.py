@@ -54,6 +54,7 @@ def parse_command(command):
     """
     raw_parts = remove_punctuation(command).split()
 
+    filtered_parts = [word
                       for word in raw_parts
                       if word not in lists.filter_words]
 
