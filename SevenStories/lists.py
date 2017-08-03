@@ -9,14 +9,15 @@ Contains the following lists:
 
 """
 filter_words = ["the", "a", "an", "my", "display",
-                "and"]
+                "and", "to"]
 
 actions = [
-    "health", "location", "name", "save", "quit"
+    "health", "location", "name", "save", "quit",
+    "go", "move", "goto"
     ]
 
 adjectives = [
-    "red", "green", "blue", "first"
+    "red", "green", "blue", "first", "second"
     ]
 
 locations = [

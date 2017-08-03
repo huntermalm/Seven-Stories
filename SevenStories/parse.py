@@ -81,15 +81,15 @@ def parse_command(command):
     for action_object in action_objs:
         action_object.direct_objects = get_direct_objects(action_object, object_objs)
 
-        print("DOs for {}: ".format(action_object.word), end="")
+        # print("DOs for {}: ".format(action_object.word), end="")
 
-        for count, direct_object in enumerate(action_object.direct_objects):
-            print(direct_object.get_fullname(), end="")
+        # for count, direct_object in enumerate(action_object.direct_objects):
+        #     print(direct_object.get_fullname(), end="")
 
-            if len(action_object.direct_objects) - 1 != count:
-                print(", ", end="")
+        #     if len(action_object.direct_objects) - 1 != count:
+        #         print(", ", end="")
 
-        print()
+        # print()
 
     load = [(get_action_dictionary()[action_object.word], action_object)
             for action_object in action_objs]
@@ -171,4 +171,4 @@ def add_adjectives_to_objects(adjective_objs, object_objs):
                     word_obj.adjectives = temp_adjs
                     temp_adjs = []
 
-    [print("{} at {} ({} adjectives)".format(object_obj.get_fullname(), object_obj.index, len(object_obj.adjectives))) for object_obj in object_objs]
+    # [print("{} at {} ({} adjectives)".format(object_obj.get_fullname(), object_obj.index, len(object_obj.adjectives))) for object_obj in object_objs]
