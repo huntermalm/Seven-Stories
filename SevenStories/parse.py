@@ -54,22 +54,25 @@ def parse_command(command):
     """
     raw_parts = remove_punctuation(command).split()
 
+                      for word in raw_parts
+                      if word not in lists.filter_words]
+
     action_objs = [wordtypes.Action(word, index)
-                   for index, word in enumerate(raw_parts)
+                   for index, word in enumerate(filtered_parts)
                    if word in lists.actions]
 
     adjective_objs = [wordtypes.Adjective(word, index)
-                      for index, word in enumerate(raw_parts)
+                      for index, word in enumerate(filtered_parts)
                       if word in lists.adjectives]
 
     object_objs = [wordtypes.Object(word, index, "item")
-                   for index, word in enumerate(raw_parts)
+                   for index, word in enumerate(filtered_parts)
                    if word in lists.items]
     object_objs.extend([wordtypes.Object(word, index, "location")
-                        for index, word in enumerate(raw_parts)
+                        for index, word in enumerate(filtered_parts)
                         if word in lists.locations])
     object_objs.extend([wordtypes.Object(word, index, "container")
-                        for index, word in enumerate(raw_parts)
+                        for index, word in enumerate(filtered_parts)
                         if word in lists.containers])
 
     add_adjectives_to_objects(adjective_objs, object_objs)
