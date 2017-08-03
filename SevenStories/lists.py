@@ -6,7 +6,7 @@ Contains the following lists:
     * locations
 
 """
-
+filter_words = ["the", "a", "an", "my", "display"]
 
 actions = [
     "health", "location", "name", "save", "quit"
