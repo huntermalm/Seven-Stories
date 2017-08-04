@@ -325,18 +325,12 @@ def load_options():
 
     """
     while True:
-        save_exists = False
-        character_names = {}
-
-        for count, file in enumerate(os.listdir(get_saves_dir())):
-            save_exists = True
-            with open(get_saves_dir() + file, "rb") as f:
-                game_map = pickle.load(f)
-                character_names[str(count + 1)] = game_map.player.name
+        character_names = {str(count + 1): load_game(file[:-4], echo=False).player.name
+                           for count, file in enumerate(os.listdir(get_saves_dir()))}
 
         print("--------------------------------------------")
 
-        if not save_exists:
+        if not character_names:
             return create_character()
 
         print("Your characters:")
