@@ -8,26 +8,14 @@ Contains the following lists:
     * containers
 
 """
-filter_words = ["the", "a", "an", "my", "display",
-                "and", "to"]
+filter_words = "the a an my display and to".split()
 
-actions = [
-    "health", "location", "name", "save", "quit",
-    "go", "move", "goto"
-    ]
+actions = "health location name save quit go move goto".split()
 
-adjectives = [
-    "red", "green", "blue", "first", "second"
-    ]
+adjectives = "red green blue first second".split()
 
-locations = [
-    "room"
-    ]
+locations = ["room"]
 
-items = [
-    "phone", "laptop"
-    ]
+items = "phone laptop".split()
 
-containers = [
-    "chest", "backpack", "table", "desk", "bag"
-    ]
+containers = "chest backpack table desk bag".split()

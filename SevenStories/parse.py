@@ -69,12 +69,16 @@ def parse_command(command):
     object_objs = [wordtypes.Object(word, index, "item")
                    for index, word in enumerate(filtered_parts)
                    if word in lists.items]
-    object_objs.extend([wordtypes.Object(word, index, "location")
-                        for index, word in enumerate(filtered_parts)
-                        if word in lists.locations])
-    object_objs.extend([wordtypes.Object(word, index, "container")
-                        for index, word in enumerate(filtered_parts)
-                        if word in lists.containers])
+
+    object_objs += [wordtypes.Object(word, index, "location")
+                    for index, word in enumerate(filtered_parts)
+                    if word in lists.locations]
+
+    object_objs += [wordtypes.Object(word, index, "container")
+                    for index, word in enumerate(filtered_parts)
+                    if word in lists.containers]
+
+    object_objs.sort(key=lambda object_obj: object_obj.index)
 
     add_adjectives_to_objects(adjective_objs, object_objs)
 
@@ -102,11 +106,12 @@ def get_direct_objects(action_object, object_objs):
 
     for object_object in object_objs:
         adjective_count = len(object_object.adjectives)
+
         if object_object.index - adjective_count - 1 == action_object.index:
             direct_objects.append(object_object)
 
         elif direct_objects:
-            if object_object.index - adjective_count - 1 == direct_objects[len(direct_objects) - 1].index:
+            if object_object.index - adjective_count - 1 == direct_objects[-1].index:
                 direct_objects.append(object_object)
 
     return direct_objects
@@ -155,9 +160,7 @@ def add_adjectives_to_objects(adjective_objs, object_objs):
     :type object_objs: list
 
     """
-    combined_list = []
-    combined_list.extend(adjective_objs)
-    combined_list.extend(object_objs)
+    combined_list = adjective_objs + object_objs
     combined_list.sort(key=lambda word_obj: word_obj.index)
 
     temp_adjs = []
